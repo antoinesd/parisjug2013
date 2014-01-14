@@ -23,7 +23,7 @@ public class ProxyTest {
         int i = 0;
         System.err.println(e);
         for (StackTraceElement stackTraceElement : e.getStackTrace()) {
-            System.err.println("  " + stackTraceElement);
+            System.err.println("    " + stackTraceElement);
             i++;
             if (stackTraceElement.toString().startsWith(getClass().getName())) {
                 return i;

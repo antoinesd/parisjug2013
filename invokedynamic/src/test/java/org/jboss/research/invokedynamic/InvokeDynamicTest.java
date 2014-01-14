@@ -38,7 +38,7 @@ public class InvokeDynamicTest {
     }
 
     @Test
-    public void invokeDynamicStackTrace() {
+    public void invokeDynamic() {
         UserService userService = new UserServiceImpl();
         try {
             userService.addUser("Darth Vador", "1 Force Street, Death Star", true);
@@ -51,7 +51,7 @@ public class InvokeDynamicTest {
         int i = 0;
         System.err.println(e);
         for (StackTraceElement stackTraceElement : e.getStackTrace()) {
-            System.err.println("  " + stackTraceElement);
+            System.err.println("    " + stackTraceElement);
             i ++;
             if (stackTraceElement.toString().startsWith(getClass().getName())) {
                 return i;
