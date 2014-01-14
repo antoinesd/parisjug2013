@@ -36,7 +36,7 @@ You can run the code from maven as well or from you IDE (be careful that your ID
 
 Go to proxy module and enter
 
-`mn exec:java -Dexec.mainClass="org.jboss.research.proxy.Main"`
+`mvn exec:java -Dexec.mainClass="org.jboss.research.proxy.Main"`
 
 The result stack trace will be :
 
@@ -60,9 +60,9 @@ Go to the Invokedynamic module and launch
 
 Stack trace will be less verbose :
 
-java.lang.Throwable
-	at org.jboss.research.invokedynamic.UserServiceImpl.addUser(UserServiceImpl.java:18)
-	at org.jboss.research.invokedynamic.Main.main(Main.java:45)
+    java.lang.Throwable
+        at org.jboss.research.invokedynamic.UserServiceImpl.addUser(UserServiceImpl.java:18)
+        at org.jboss.research.invokedynamic.Main.main(Main.java:45)
 
 
 Going further
