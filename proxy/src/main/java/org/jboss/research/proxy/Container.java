@@ -2,33 +2,13 @@ package org.jboss.research.proxy;
 
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.lang.reflect.UndeclaredThrowableException;
 
 public class Container {
 
 
-    AdviceContextImpl adviceContext = new AdviceContextImpl(new Advice() {
-        @Override
-        public Object chain(AnnotatedElement annotatedElement, Object receiver, Object[] args, AdviceContext context) {
-            try {
-                return ((Method) annotatedElement).invoke(receiver, args);
-            } catch (IllegalAccessException e) {
-                throw new IllegalArgumentException(e);
-            } catch (InvocationTargetException e) {
-                Throwable cause = e.getCause();
-                if (cause instanceof RuntimeException) {
-                    throw (RuntimeException) cause;
-                }
-                if (cause instanceof Error) {
-                    throw (Error) cause;
-                }
-                throw new UndeclaredThrowableException(cause);
-            }
-        }
-    }, null);
+    AdviceContextImpl adviceContext = new AdviceContextImpl(new EffectiveCallAdvice(), null);
 
 
     static class AdviceContextImpl implements AdviceContext {
@@ -55,19 +35,20 @@ public class Container {
             throw new IllegalArgumentException(e);
         }
 
-        class ServiceInvocationHandler implements InvocationHandler {
-            @Override
-            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                return adviceContext.call(method, impl, args);
-            }
-        }
+
         return serviceInterface.cast(
                 Proxy.newProxyInstance(serviceInterface.getClassLoader(),
                         new Class<?>[]{serviceInterface},
-                        new ServiceInvocationHandler()));
+                        new InvocationHandler() {
+                            @Override
+                            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                                return adviceContext.call(method, impl, args);
+                            }
+                        }));
     }
 
     public void addAdvice(Advice advice) {
         adviceContext = new AdviceContextImpl(advice, adviceContext);
     }
+
 }

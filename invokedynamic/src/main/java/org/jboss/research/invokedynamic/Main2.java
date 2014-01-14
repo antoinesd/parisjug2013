@@ -9,9 +9,9 @@ import java.util.HashMap;
 public class Main2 {
     @SuppressWarnings("unused")
     private static void checkRole(AnnotatedElement annotatedElement, EnsureRole ensureRole) {
-        // check role here
-        //System.out.println("verify that role is " + ensureRole.value() + " when calling " + annotatedElement);
-    }
+            // check role here
+           System.out.println("verify that role is " + ensureRole.value() + " when calling " + annotatedElement);
+        }
 
     private static final MethodHandle CHECK_ROLE;
 
@@ -58,8 +58,8 @@ public class Main2 {
 
 
         UserService userService = new UserServiceImpl();
-        //for(int i=0; i < 10_000_000; i++) {
-        userService.addUser("Darth Vador", "1 Force Street, Death Star", true);
-        //}
+        for (int i = 0; i < 100; i++) {
+            userService.addUser("Darth Vador", "1 Force Street, Death Star", true);
+        }
     }
 }

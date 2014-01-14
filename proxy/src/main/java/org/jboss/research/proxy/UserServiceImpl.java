@@ -8,5 +8,8 @@ public class UserServiceImpl implements UserService {
         // add a new user to the database
         // send a mail to invite the new user
         COUNTER++;
+        if (COUNTER == 100) {   // nice stack trace ??
+            new Throwable().printStackTrace();
+        }
     }
 }

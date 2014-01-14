@@ -16,7 +16,7 @@
     <dependencies>
         <dependency>
             <groupId>org.ow2.asm</groupId>
-            <artifactId>asm-debug-all</artifactId>
+            <artifactId>asm-all</artifactId>
             <version>5.0_BETA</version>
         </dependency>
     </dependencies>
@@ -35,7 +35,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>org.jboss.research.invokedynamic.Rewriter</mainClass>
+                            <mainClass>org.jboss.research.invokedynamic.asmtools.Rewriter</mainClass>
                             <arguments>
                                 <argument>${project.basedir}/target/classes</argument>
                             </arguments>

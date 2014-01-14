@@ -4,8 +4,8 @@ package org.jboss.research.invokedynamic;
 public class UserServiceImpl implements UserService {
     private static int COUNTER;
 
-    //@Inject
-    //private Mailer mailer;
+    @Inject
+    private Mailer mailer;
 
     @Override
     public void addUser(String userName, String userMailAddress, boolean admin) {
@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
         //mailer.sendAMail(userMailAddress, "hello " + userName+", ...");
         COUNTER++;
 
-        if (COUNTER == 1_000_000) {   // nice stack trace ??
+        if (COUNTER == 100) {   // nice stack trace ??
             new Throwable().printStackTrace();
         }
     }
