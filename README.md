@@ -36,7 +36,7 @@ You can run the code from maven as well or from you IDE (be careful that your ID
 
 Go to proxy module and enter
 
-`mvn -Dtest=ProxyTest`
+`mvn`
 
 The result stack trace will be :
 
@@ -57,7 +57,7 @@ The result stack trace will be :
 
 Go to the Invokedynamic module and launch
 
-`mvn -Dtest=InvokeDynamicProxyTest`
+`mvn`
 
 Stack trace will be less verbose :
 
