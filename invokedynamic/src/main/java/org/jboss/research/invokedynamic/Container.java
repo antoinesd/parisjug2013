@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Container {
     private static final ArrayList<Advice> advices = new ArrayList<>();
 
-    public static CallSite bootstrap(Lookup lookup, String name, MethodType methodType, MethodHandle impl) {
+    public static CallSite bootstrap(Lookup lookup, String name, MethodType methodType, MethodHandle impl) throws NoSuchMethodException, IllegalAccessException {
         AnnotatedElement annotatedElement = Magic.reflect(impl);
         MethodHandle mh = impl;
         for (Advice advice : advices) {

@@ -32,38 +32,38 @@ Run the code
 ----------
 
 You can run the code from maven as well or from you IDE (be careful that your IDE doesn't recompile the code or if it does be
- sure that `process-class`maven phase is also launch to weave the code)
+ sure that `process-class` maven phase is also launch to weave the code)
 
 Go to proxy module and enter
 
-`mn exec:java -Dexec.mainClass="org.jboss.research.proxy.Main"`
+`mvn -Dtest=ProxyTest`
 
 The result stack trace will be :
 
 
-    java.lang.Throwable
-        at org.jboss.research.proxy.UserServiceImpl.addUser(UserServiceImpl.java:12)
-        at sun.reflect.GeneratedMethodAccessor8.invoke(Unknown Source)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:606)
-        at org.jboss.research.proxy.EffectiveCallAdvice.chain(EffectiveCallAdvice.java:15)
-        at org.jboss.research.proxy.Container$AdviceContextImpl.call(Container.java:26)
-        at org.jboss.research.proxy.CheckRoleAdvice.chain(CheckRoleAdvice.java:19)
-        at org.jboss.research.proxy.Container$AdviceContextImpl.call(Container.java:26)
-        at org.jboss.research.proxy.Container$1.invoke(Container.java:45)
-        at com.sun.proxy.$Proxy18.addUser(Unknown Source)
-        at org.jboss.research.proxy.Main.main(Main.java:12)
+    java.lang.RuntimeException: There should be a lot of noise in the stacktrace
+        org.jboss.research.proxy.UserServiceImpl.addUser(UserServiceImpl.java:8)
+        sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+        sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        java.lang.reflect.Method.invoke(Method.java:606)
+        org.jboss.research.proxy.EffectiveCallAdvice.chain(EffectiveCallAdvice.java:15)
+        org.jboss.research.proxy.Container$AdviceContextImpl.call(Container.java:26)
+        org.jboss.research.proxy.CheckRoleAdvice.chain(CheckRoleAdvice.java:19)
+        org.jboss.research.proxy.Container$AdviceContextImpl.call(Container.java:26)
+        org.jboss.research.proxy.Container$1.invoke(Container.java:45)
+        com.sun.proxy.$Proxy4.addUser(Unknown Source)
+        org.jboss.research.proxy.ProxyTest.proxy(ProxyTest.java:16)
 
 Go to the Invokedynamic module and launch
 
-`mvn exec:java -Dexec.mainClass="org.jboss.research.invokedynamic.Main"`
+`mvn -Dtest=InvokeDynamicProxyTest`
 
 Stack trace will be less verbose :
 
-java.lang.Throwable
-	at org.jboss.research.invokedynamic.UserServiceImpl.addUser(UserServiceImpl.java:18)
-	at org.jboss.research.invokedynamic.Main.main(Main.java:45)
-
+    java.lang.RuntimeException: Let's look at the clean stack trace
+        org.jboss.research.invokedynamic.UserServiceImpl.addUser(UserServiceImpl.java:15)
+        org.jboss.research.invokedynamic.InvokeDynamicTest.invokeDynamic(InvokeDynamicTest.java:44)
 
 Going further
 ---------

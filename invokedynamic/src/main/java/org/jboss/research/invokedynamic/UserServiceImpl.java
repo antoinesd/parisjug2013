@@ -12,10 +12,6 @@ public class UserServiceImpl implements UserService {
         // add a new user to the database
         // send a mail to invite the new user
         //mailer.sendAMail(userMailAddress, "hello " + userName+", ...");
-        COUNTER++;
-
-        if (COUNTER == 100) {   // nice stack trace ??
-            new Throwable().printStackTrace();
-        }
+        throw new RuntimeException("Let's look at the clean stack trace");
     }
 }
