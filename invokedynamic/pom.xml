@@ -38,7 +38,7 @@
                         <configuration>
                             <mainClass>org.jboss.research.invokedynamic.asmtools.Rewriter</mainClass>
                             <arguments>
-                                <argument>${project.basedir}/target/classes</argument>
+                                <argument>${project.basedir}/target</argument>
                             </arguments>
                         </configuration>
                     </execution>

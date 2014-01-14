@@ -12,6 +12,8 @@
     <artifactId>proxy</artifactId>
 
 
-
+    <build>
+           <defaultGoal>test</defaultGoal>
+    </build>
 
 </project>
